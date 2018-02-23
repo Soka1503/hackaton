@@ -47,7 +47,7 @@
         <div class="container">
             <div class="intro">
                 <h2 class="text-center" style="font-size:32px;font-family:'Cambria';color:#291579;">OM OSS</h2>
-                <p class="text-center" style="font-size:22px;font-family:'Cambria';">Knyta kontakter är riktad till dig som vill träffa nya vänner och är åldersgruppen 60 år eller uppåt. Vi vill göra livet och vardagen roligare för dig genom att skapa en plattform där du kan ta kontakt med människor i din närhet som vill hitta på saker. Här kan du till exempel hitta en promenadkompis, en att gå på bio med eller bara någon att bjuda över på en fika. Möjligheterna är många och vi anser att det är roligare att hitta på saker tillsammans.</p>
+                <p class="text-center" style="font-size:22px;font-family:'Cambria';">Knyta kontakter är riktad till dig som vill träffa nya vänner och är i åldersgruppen 60 år eller uppåt. Vi vill göra livet och vardagen roligare för dig genom att skapa en plattform där du kan ta kontakt med människor i din närhet som vill hitta på saker. Här kan du till exempel hitta en promenadkompis, en att gå på bio med eller bara någon att bjuda över på en fika. Möjligheterna är många och vi anser att det är roligare att hitta på saker tillsammans.</p>
                 <h3 class="text-center" style="font-family:'Cambria';"><strong>KONTAKTA OSS: </strong><a href="KontaktaOss.php">KLICKA HÄR</a></h3></div>
             <div class="row people">
                 <div class="col-md-4 col-sm-6 item">
