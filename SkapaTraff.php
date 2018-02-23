@@ -1,3 +1,15 @@
+<?php
+    // Starta sessionen
+    ob_start();
+    session_start();
+
+    // kollar om man är inloggad, om inte skickas användaren till logg in sidan.
+   if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+        header("Location: LoggaIn.php");
+		
+    }
+	
+?>
 <!DOCTYPE html>
 <html>
 
