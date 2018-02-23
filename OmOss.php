@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6 item">
                     <div class="box">
-                        <p class="description" style="font-size:23px;font-family:'Cambria';">JAG HAR HITTAT VÄNNER FÖR LIVET!</p>
+                        <p class="description" style="font-size:23px;font-family:'Cambria';">ATT DET FINNS SÅ TREVLIGA MÄNNISKOR I NÄRHETEN AV DÄR JAG BOR SOM JAG ALDRIG TRÄFFAT FÖRR!</p>
                     </div>
                     <div class="author">
                         <h5 class="name" style="font-size:20px;font-family:'Cambria';">BENGT, 80 ÅR</h5>
