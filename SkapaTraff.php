@@ -69,9 +69,7 @@
                 </div>
                 <div class="col-md-6">
                     <h1 style="font-family:'Cambria';color:#291579;"><strong>INSTRUKTIONER</strong></h1>
-                    <h2 style="font-family:'Cambria';">1. ...</h2>
-                    <h2 style="font-family:'Cambria';">2. ...</h2>
-                    <h2 style="font-family:'Cambria';">Heading</h2></div>
+                    <p>Här kan du skapa en träff.  När du har skapat en träff kan personer i din närhet se ditt event kontakta dig vid intresse. <p></div>
             </div>
         </div>
     </div>
