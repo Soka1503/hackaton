@@ -1,6 +1,6 @@
 <?php
     // Starta sessionen
-    ob_start();
+   ob_start();
     session_start();
 
     // kollar om man är inloggad, om inte skickas användaren till logg in sidan.
@@ -9,7 +9,19 @@
 		
     }
 	
+
+
+//om användaren vill registrera ett event
+		
+	$title="";
+	$street="";
+	$postcode="";
+	$city="";
+	$date="";
+	$description="";
+		
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,18 +70,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
+				<form method="post" action=NyttEvent.php>
                     <h1 style="font-family:'Cambria';color:#291579;"><strong>SKAPA TRÄFF</strong></h1>
                     <input class="input-lg" type="text" name="Titel" required="" placeholder="TITEL" style="width:500px;font-size:22px;font-family:'Cambria';">
-                    <input class="input-lg" type="date" style="width:500px;font-size:22px;font-family:'Cambria';">
-                    <input class="input-lg" type="text" name="Gata" required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">
+                    <input class="input-lg" name='date' required="" type="date" style="width:500px;font-size:22px;font-family:'Cambria';">
+                    <input class="input-lg" type="text" name="Gata"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">
+					<input class="input-lg" type="text" name="Port" required="" placeholder="GATUNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" type="text" name="Postnummer" required="" placeholder="POSTNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" type="text" name="Stad" required="" placeholder="STAD" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <textarea class="input-lg" name="Beskrivning" required="" placeholder="BESKRIVNING" style="width:500px;font-size:22px;font-family:'Cambria';"></textarea>
-                    <button class="btn btn-default" type="submit" style="font-size:22px;font-family:'Cambria';width:500px;">SKICKA </button>
+                    <button class="btn btn-default" type="submit" style="font-size:22px;font-family:'Cambria';width:500px;">SKICKA </button></form>
                 </div>
                 <div class="col-md-6">
                     <h1 style="font-family:'Cambria';color:#291579;"><strong>INSTRUKTIONER</strong></h1>
-                    <p>Här kan du skapa en träff.  När du har skapat en träff kan personer i din närhet se ditt event kontakta dig vid intresse. <p></div>
+                    <h2 style="font-family:'Cambria';">Här kan du skapa en träff.  När du har skapat en träff kan personer i din närhet se ditt event kontakta dig vid intresse. <p></div>
+            </h2>
+                    </div>
             </div>
         </div>
     </div>
