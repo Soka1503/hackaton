@@ -1,26 +1,59 @@
 <?php
 include('httpful.phar');
 
+//fixar inmatningsdata
+
+
 //om användaren vill registrera en anvädare
-		
-	$personalNumber="";
-	$firstName="";
-	$lastName="";
-	$Street="";
-	$Postcode="";
-	$Port="";
-	$password="";	
-	$phonenumber="";
 	
 	
+	$personalNumber=($_POST['Personnummer']);
+	$firstName=($_POST['Fornamn']);
+	$lastName=($_POST['Efternamn']);
+	$Street=($_POST['Adress']);
+	$Postcode=($_POST['Postnummer']);
+	$Port=($_POST['Port']);
+	$password=($_POST['Losenord']);	
+	$phonenumber=($_POST['Telefonnummer']);
+	
+
+	
+	//URL till api.
+	//$url = "http://maps.googleapis.com/maps/api/geocode/json?address=24+hårdvallsgatan";
+	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$Port."+".$Street."+".$Postcode;
+	
+	//Svaret tilldelas en variabel
+	$response = \Httpful\Request::get($url)
+		->send();
+	
+	$rows = json_decode($response,true);
+	
+	$result = $rows['results'];
+	//var_dump($result);
+	
+	//$lat->lat;
+	
+	$components= $result[0];
+	
+	//var_dump($components);
+	
+	//var_dump($components['geometry']['location']['lat']);
+	//var_dump($components['geometry']['location']['lng']);
+	//var_dump($components['place_id']);
+	
+	
+	$latitud=$components['geometry']['location']['lat'];
+	$longitud=$components['geometry']['location']['lng'];
+	
+	//print("Latitud " . $latitud . " AND Longitud: " . $longitud);
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <div style="text-align: center;"><IMG SRC="logga.jpg" ALT="image"></div>
-    <title></title>
+    <title>hack</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
@@ -35,7 +68,7 @@ include('httpful.phar');
 </head>
 
 <body>
-    <div>
+    <nav class="navbar navbar-default navigation-clean-button">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -51,41 +84,30 @@ include('httpful.phar');
                                 </ul>
                                 <p class="navbar-text navbar-right actions"><a class="navbar-link login" href="LoggaIn.php" style="color:#282821;font-size:22px;font-family:'Cambria';"><strong>LOGGA IN</strong></a> <a class="btn btn-default action-button" role="button" href="GaMed.php" style="background-color:#291579;font-size:22px;font-family:'Cambria';"><strong>GÅ MED</strong></a></p>
                             </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
         </div>
-    </div>
-    <div class="register-photo">
-        <div class="form-container">
-            <div class="image-holder"></div>
-            <form method="post" action=NyttKonto.php>
-                <h2 class="text-center" style="font-size:32px;font-family:'Cambria';color:#291579;"><strong>SKAPA</strong> ETT KONTO</h2>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="Personnummer" id= 'Personnummer' required="" placeholder="PERSONNUMMER" maxlength="12" minlength="12" style="font-family:'Cambria';font-size:22px;">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="Losenord" id='Losenord' required="" placeholder="LÖSENORD" maxlength="20" minlength="8" style="font-size:22px;font-family:'Cambria';">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="Losenord-upprepa" required="" placeholder="UPPREPA LÖSENORD" maxlength="20" minlength="8" style="font-size:22px;font-family:'Cambria';">
-                </div>
-                <div class="form-group"></div>
-                <input class="form-control" type="text" name="Fornamn" id = 'Fornamn' required="" placeholder="FÖRNAMN" style="font-family:'Cambria';font-size:22px;">
-                <input class="form-control" type="text" name="Efternamn"id = 'Efternamn' required="" placeholder="EFTERNAMN" style="font-family:'Cambria';font-size:22px;">
-                <input class="form-control" type="text" name="Adress" id= 'Adress' required="" placeholder="GATUADRESS" style="font-family:'Cambria';font-size:22px;">
-                <input class="form-control" type="text" name="Port" id = 'Port' required="" placeholder="GATUNUMMER" style="font-family:'Cambria';font-size:22px;">
-                <input class="form-control" type="text" name="Postnummer" id='Postnummer' required="" placeholder="POSTNUMMER" style="font-family:'Cambria';font-size:22px;">
-				<input class="form-control" type="text" required="" name="Telefonnummer" placeholder="TELEFONNUMMER" id='Telefonnummer' style="font-family:'Cambria';font-size:22px;">
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit" style="font-size:22px;background-color:#291579;font-family:'Cambria';">REGISTRERA </button>
-                </div><a href="LoggaIn.php" class="already" style="color:#282821;font-size:18px;font-family:'Cambria';">HAR DU REDAN ETT KONTO? LOGGA IN HÄR</a></form>
+    </nav>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="font-family:'Cambria';">DU HAR SKAPAT ETT NYTT KONTO</h1>
+					<h2 style="font-family:'Cambria';"> Förnamn: <?php echo htmlspecialchars($_POST['Fornamn']); ?>. </h2>
+<h2 style="font-family:'Cambria';"> Efternamn: <?php echo htmlspecialchars($_POST['Efternamn']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Personnummer: <?php echo htmlspecialchars($_POST['Personnummer']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Gata: <?php echo htmlspecialchars($_POST['Adress']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Gatunummer: <?php echo htmlspecialchars($_POST['Port']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Postnummer: <?php echo htmlspecialchars($_POST['Postnummer']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Lösenord: <?php echo htmlspecialchars($_POST['Losenord']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Telefonnummer: <?php echo htmlspecialchars($_POST['Telefonnummer']); ?>. </h2>
+<h2 style="font-family:'Cambria';">Longitud: <?php echo $latitud; ?>.</h2>
+<h2 style="font-family:'Cambria';">Latitud: <?php echo $longitud; ?>. </h2>
+<a href="LoggaIn.php" style="font-family:'Cambria';font-size:32px;">TRYCK HÄR FÖR ATT LOGGA IN</a></div>
+            </div>
         </div>
     </div>
     <div class="footer-basic">
         <footer>
-            <ul class="list-inline">
+           <ul class="list-inline">
                 <li><a href="index.php" style="font-family:'Cambria';font-size:20px;">HEM </a></li>
                 <li><a href="SkapaTraff.php" style="font-family:'Cambria';font-size:20px;">SKAPA EVENT</a></li>
                 <li><a href="OmOss.php" style="font-family:'Cambria';font-size:20px;">OM OSS</a></li>
