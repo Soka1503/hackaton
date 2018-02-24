@@ -4,20 +4,19 @@ include "db_connection.php";
     // Starta sessionen
 ob_start();
 session_start();
+
     // kollar om man är inloggad, om inte skickas användaren till logg in sidan.
 if (!isset($_SESSION['loggedIn'],$_SESSION['personalnumber']) || $_SESSION['loggedIn'] == false) {
 	header("Location: LoggaIn.php");
- if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
-        header("Location: LoggaIn.php");
-		
+	if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+        header("Location: LoggaIn.php");	
     }
 	if(isset($_POST['logout'])) {
-    session_destroy();
-    header('location:LoggaIn.php');
+		session_destroy();
+		echo "här";
+		header('location: index.php');
+	}	
 }
-	
-}
-
 //om användaren vill registrera ett event
 		
 	$title="";
@@ -28,20 +27,17 @@ if (!isset($_SESSION['loggedIn'],$_SESSION['personalnumber']) || $_SESSION['logg
 	$description="";
 	$time="";
 //fixar inmatningsdata
-
-
 //om användaren vill registrera en anvädare
 	
-if(isset($_POST['Titel'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer'],$_POST['Port'],$_POST['date'],$_POST['time'])){
+if(isset($_POST['kategori'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer'],$_POST['Port'],$_POST['date'],$_POST['time'])){
 	
-	$title=($_POST['Titel']);
+	$title=($_POST['kategori']);
 	$Street=($_POST['Gata']);
 	$Postcode=($_POST['Postnummer']);
 	$Port=($_POST['Port']);
 	$date=($_POST['date']);	
 	$time=($_POST['time']);
 	$description=($_POST['Beskrivning']);
-
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$Port."+".$Street."+".$Postcode;
 	
 	//Svaret tilldelas en variabel
@@ -110,8 +106,7 @@ if(isset($_POST['Titel'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer
                 <div class="col-md-6">
 				 <form method="post" action="<?php echo htmlspecialchars ($_SERVER['PHP_SELF']);?>"/>
                     <h1 style="font-family:'Cambria';color:#291579;"><strong>SKAPA TRÄFF</strong></h1>
-                    <input class="input-lg" type="text" name="Titel" required="" placeholder="TITEL" style="width:500px;font-size:22px;font-family:'Cambria';">
-                    <input class="input-lg" name='date' required="" type="date" style="width:500px;font-size:22px;font-family:'Cambria';">
+					<input class="input-lg" name='date' required="" type="date" style="width:500px;font-size:22px;font-family:'Cambria';">
 					<input class="input-lg" type="text" name="time"  required="" placeholder="TID (HH.MM)" style="width:500px;font-size:22px;font-family:'Cambria';">					
 					<input class="input-lg" type="text" name="Gata"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">
 					<input class="input-lg" type="text" name="Port" required="" placeholder="GATUNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
@@ -147,7 +142,7 @@ if(isset($_POST['Titel'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer
             </ul>
             <p class="copyright" style="font-family:'Cambria';font-size:18px;">KNYTA KONTAKTER © 2018</p>
         </footer>
-	    	<div class="knapp" style="text-align:center;"><button class="btn btn-default" name='logout' type="button" action="<?php echo htmlspecialchars ($_SERVER['PHP_SELF']);?>" style="width:430px;margin:8px;padding:14px;font-family:'Cambria';font-size:17px;">LOGGA UT</button></div>
+	    	<div class="knapp" style="text-align:center;"><button class="btn btn-default" name='logout' method="post" type="button" action="<?php echo htmlspecialchars ($_SERVER['PHP_SELF']);?>" style="width:430px;margin:8px;padding:14px;font-family:'Cambria';font-size:17px;">LOGGA UT</button></div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
