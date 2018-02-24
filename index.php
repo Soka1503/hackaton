@@ -225,10 +225,8 @@
                 </div>
                 <div class="col-md-6">
                     <h1 style="color:#291579;font-family:'Cambria';"><strong>INSTRUKTIONER </strong></h1>
-                    <h2 style="font-family:'Cambria';">1. Klicka ....</h2>
-                    <h2 style="font-family:'Cambria';">2. ....</h2>
-                    <h2 style="font-family:'Cambria';">3. </h2>
-                    <h2 style="font-family:'Cambria';">4. </h2></div>
+                    <h2 style="font-family:'Cambria';">Klicka på en symbol på kartan för att få mer information om vem som skapat träffen och när den kommer att inträffa. Om du är intresserad av träffen kan du ta kontakt med skaparen av den.  </h2>
+                 
             </div>
         </div>
     </div>
