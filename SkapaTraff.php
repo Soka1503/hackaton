@@ -7,6 +7,14 @@ session_start();
     // kollar om man är inloggad, om inte skickas användaren till logg in sidan.
 if (!isset($_SESSION['loggedIn'],$_SESSION['personalnumber']) || $_SESSION['loggedIn'] == false) {
 	header("Location: LoggaIn.php");
+ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+        header("Location: LoggaIn.php");
+		
+    }
+	if(isset($_POST['logout'])) {
+    session_destroy();
+    header('location:LoggaIn.php');
+}
 	
 }
 
@@ -139,6 +147,7 @@ if(isset($_POST['Titel'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer
             </ul>
             <p class="copyright" style="font-family:'Cambria';font-size:18px;">KNYTA KONTAKTER © 2018</p>
         </footer>
+	    	<div class="knapp" style="text-align:center;"><button class="btn btn-default" name='logout' type="button" action="<?php echo htmlspecialchars ($_SERVER['PHP_SELF']);?>" style="width:430px;margin:8px;padding:14px;font-family:'Cambria';font-size:17px;">LOGGA UT</button></div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
