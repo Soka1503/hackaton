@@ -104,12 +104,20 @@ if(isset($_POST['Titel'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer
                     <h1 style="font-family:'Cambria';color:#291579;"><strong>SKAPA TRÄFF</strong></h1>
                     <input class="input-lg" type="text" name="Titel" required="" placeholder="TITEL" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" name='date' required="" type="date" style="width:500px;font-size:22px;font-family:'Cambria';">
-					<input class="input-lg" type="text" name="time"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">					
+					<input class="input-lg" type="text" name="time"  required="" placeholder="TID (HH.MM)" style="width:500px;font-size:22px;font-family:'Cambria';">					
 					<input class="input-lg" type="text" name="Gata"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">
 					<input class="input-lg" type="text" name="Port" required="" placeholder="GATUNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" type="text" name="Postnummer" required="" placeholder="POSTNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" type="text" name="Stad" required="" placeholder="STAD" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <textarea class="input-lg" name="Beskrivning" required="" placeholder="BESKRIVNING" style="width:500px;font-size:22px;font-family:'Cambria';"></textarea>
+		<select name="kategori" required="" style="width:500px;font-size:22px;font-family:'Cambria';">
+					<option value = "" disabled selected hidden> VÄLJ KATEGORI </option>
+					<option value="GOLF">GOLF</option>
+					<option value="FIKA">FIKA</option>
+					<option value="PROMENAD">PROMENAD</option>
+					<option value="BIO">BIO</option>
+					<option value="OVRIGT">ÖVRIGT</option>
+										</select>	
                     <button class="btn btn-default" type="submit" style="font-size:22px;font-family:'Cambria';width:500px;">SKICKA </button></form>
                 </div>
                 <div class="col-md-6">
