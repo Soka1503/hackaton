@@ -138,6 +138,10 @@
 						var green='http://maps.google.com/mapfiles/ms/icons/green-dot.png';
 						var red='http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 						var yellow='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+						var promenad= 'https://github.com/Soka1503/hackaton/blob/master/walk.png?raw=true';
+						var fika = 'https://github.com/Soka1503/hackaton/blob/master/bild2.png?raw=true';
+						var bio= 'https://github.com/Soka1503/hackaton/blob/master/film.png?raw=true';
+						var golf= ' https://github.com/Soka1503/hackaton/blob/master/bild3.png?raw=true';
 						//Inställningar för klustret anges.
 						var mcOptions = {styles: [{
 						//grön	
@@ -148,17 +152,18 @@
 						//Lägger till alla punkter från arrayen "locations" nedan.
 						var markers = locations.map(function(location, i) {
 							var image = 'https://github.com/scottdejonge/map-icons.git/src/icons/cafe.svg';
-							if(category[i][0]=="hacka"){	
-								var color=image;
+							if(category[i][0]=="golf"){	
+								var color=golf;
 							}
-							if(category[i][0]=="hacka32"){	
-								var color=red;
+							if(category[i][0]=="promenad"){	
+								var color=promenad;
 							}
-							if(category[i][0]=="hacka2"){	
-								var color=red;
+							if(category[i][0]=="fika"){	
+								var color=fika;
 							}
-							if(category[i][0]=="hacka321"){	
-								var color=red;
+							if(category[i][0]=="bio"){	
+								var color=bio;
+
 							}
 							else{
 								var color=green;	
