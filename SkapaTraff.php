@@ -1,15 +1,14 @@
 <?php
+include('httpful.phar');
+include "db_connection.php";
     // Starta sessionen
-   ob_start();
-    session_start();
-
+ob_start();
+session_start();
     // kollar om man är inloggad, om inte skickas användaren till logg in sidan.
-   if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
-        header("Location: LoggaIn.php");
-		
-    }
+if (!isset($_SESSION['loggedIn'],$_SESSION['personalnumber']) || $_SESSION['loggedIn'] == false) {
+	header("Location: LoggaIn.php");
 	
-
+}
 
 //om användaren vill registrera ett event
 		
@@ -19,7 +18,38 @@
 	$city="";
 	$date="";
 	$description="";
-		
+	$time="";
+//fixar inmatningsdata
+
+
+//om användaren vill registrera en anvädare
+	
+if(isset($_POST['Titel'],$_POST['Gata'],$_POST['Beskrivning'],$_POST['Postnummer'],$_POST['Port'],$_POST['date'],$_POST['time'])){
+	
+	$title=($_POST['Titel']);
+	$Street=($_POST['Gata']);
+	$Postcode=($_POST['Postnummer']);
+	$Port=($_POST['Port']);
+	$date=($_POST['date']);	
+	$time=($_POST['time']);
+	$description=($_POST['Beskrivning']);
+
+	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$Port."+".$Street."+".$Postcode;
+	
+	//Svaret tilldelas en variabel
+	$response = \Httpful\Request::get($url)
+		->send();
+	
+	$rows = json_decode($response,true);
+	
+	$result = $rows['results'];
+	$components= $result[0];
+	
+	$latitud=$components['geometry']['location']['lat'];
+	$longitud=$components['geometry']['location']['lng'];
+	$connect = new db_connection();
+	$connect->addEvent($_SESSION['personalnumber'],$title,$description,$latitud,$longitud,$date,$time);
+}		
 ?>
 
 <!DOCTYPE html>
@@ -70,11 +100,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-				<form method="post" action=NyttEvent.php>
+				 <form method="post" action="<?php echo htmlspecialchars ($_SERVER['PHP_SELF']);?>"/>
                     <h1 style="font-family:'Cambria';color:#291579;"><strong>SKAPA TRÄFF</strong></h1>
                     <input class="input-lg" type="text" name="Titel" required="" placeholder="TITEL" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" name='date' required="" type="date" style="width:500px;font-size:22px;font-family:'Cambria';">
-                    <input class="input-lg" type="text" name="Gata"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">
+					<input class="input-lg" type="text" name="time"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">					
+					<input class="input-lg" type="text" name="Gata"  required="" placeholder="GATUADRESS" style="width:500px;font-size:22px;font-family:'Cambria';">
 					<input class="input-lg" type="text" name="Port" required="" placeholder="GATUNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" type="text" name="Postnummer" required="" placeholder="POSTNUMMER" style="width:500px;font-size:22px;font-family:'Cambria';">
                     <input class="input-lg" type="text" name="Stad" required="" placeholder="STAD" style="width:500px;font-size:22px;font-family:'Cambria';">
